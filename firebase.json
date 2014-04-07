@@ -1,0 +1,5 @@
+{
+  "firebase": "whobase",
+  "public": "public",
+  "rules": "config/rules.json"
+}

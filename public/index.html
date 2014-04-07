@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Firebase Who</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <script id="template-user-list-item" type="text/x-handlebars-template">
+        <tr id="__{{username}}" style="cursor: pointer">
+            <td><img src="{{google_picture}}?sz=50"></td>
+            <td>{{display_name}}<br>
+               <small>{{title}}</small>
+            <td><a href="mailto:{{email}}">{{email}}</a></td>
+            <td>{{mobile_phone}}</td>
+        </tr>
+    </script>
+
+    <script id="template-edit-user" type="text/x-handlebars-template">
+        <form role="form">
+            <div class="form-group">
+                <label for="input_name">Display name</label>
+                <input type="text" class="form-control" id="input_name" placeholder="Enter name" value="{{display_name}}">
+            </div>
+            <div class="form-group">
+                <label for="input_title">Title</label>
+                <input type="text" class="form-control" id="input_title" placeholder="Enter job title" value="{{title}}">
+            </div>
+            <div class="form-group">
+                <label for="input_twitter">Twitter</label>
+                <input type="text" class="form-control" id="input_twitter" placeholder="Enter twitter handle" value="{{twitter_handle}}">
+            </div>
+            <div class="form-group">
+                <label for="input_phone">Mobile Phone</label>
+                <input type="tel" class="form-control" id="input_phone" placeholder="Enter phone" value="{{mobile_phone}}">
+            </div>
+            <div class="form-group">
+                <label for="input_location">Location</label>
+                <input type="text" class="form-control" id="input_location" placeholder="Enter location" value="{{location}}">
+            </div>
+            <div class="form-group">
+                <label for="input_start">Firebase Start Date</label>
+                <input type="date" class="form-control" id="input_start" placeholder="Enter start date" value="{{start_date}}">
+            </div>
+
+
+            <button type="submit" class="btn btn-default" id="input_submit">Save</button>
+            <button type="reset" class="btn btn-default" id="input_cancel">Cancel</button>
+        </form>
+    </script>
+
+
+    <script id="template-user-detail" type="text/x-handlebars-template">
+        <tr id="userDetailTr">
+            <td colspan="4">
+            <div class="row" id="userDetailDiv" style="display: none">
+                <div class="col-md-4"><img style="border-radius: 5px" src="{{google_picture}}?sz=286">
+                </div>
+                <div style="col-md-8">
+                    <span class="h1">{{display_name}}</span><br>
+                    <span class="h3"><small><em>{{title}}</em></small></span>
+
+
+                    <h4><a href="mailto:{{email}}">{{email}}</a></h4>
+                    <h4>(415) 449-0771</h4>
+
+                    <h5>twitter: <a href="http://twitter.com/{{twitter_handle}}">{{twitter_handle}}</a></h5>
+
+
+                    {{location}}<br>
+                    Firebaser since {{start_date}}
+                </div>
+            </div>
+            </td>
+         </tr>
+    </script>
+
+</head>
+<body role="document">
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Who</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li id="editLink"><a href="#edit">Edit</a></li>
+                <li id="signInLink"><a href="#signin">Sign In</a></li>
+                <li id="signOutLink"><a href="#signout">Sign Out</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+<div id="welcomeDiv" class="container" style="display: none">
+    <div class="jumbotron">
+        <h1>Welcome to Who</h1>
+        <p class="lead">Please sign in with your @firebase.com Google Account.</p>
+    </div>
+</div>
+
+<div id="editDiv" class="container" style="display:none">
+
+</div>
+
+<div class="container" id="listDiv" style="display:none">
+    <table id="users_table" class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+<div id="content"></div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/handlebars-v1.3.0.js"></script>
+
+<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
+<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.3.0/firebase-simple-login.js'></script>
+<script type='text/javascript' src='js/whobase.js'></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "rules": {
+        "firebase|com": {
+            "users": {
+                ".read": "auth.email.endsWith('@firebase.com')",
+                "$user": {
+                    ".write": "auth.email.beginsWith($user)"
+                }
+            }
+        }
+    }
+}
